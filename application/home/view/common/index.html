@@ -1,0 +1,22 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html class="no-js">
+<head>
+ {include file="../application/home/view/header/header.html"} 
+</head>
+<body>
+<script src="{:config('public.assets')}/js/jquery-3.3.1.min.js"></script>
+<script src="{:config('public.assets')}/js/amazeui.min.js"></script>
+<script src="{:config('public.assets')}/layer/layer.js"></script>
+<script>
+layer.confirm('您的体验时间已到期请充值后体验', {
+	  btn: ['重要']//按钮
+	  ,title:'温馨提示'
+     ,closeBtn: 0
+	}, function(){
+	  layer.msg('前去充值的页面', {icon: 1});
+	});
+</script>
+
+</body>
+</html>

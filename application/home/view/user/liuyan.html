@@ -1,0 +1,68 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html class="no-js">
+<head>
+ {include file="../application/home/view/header/header.html"} 
+</head>
+<style>
+</style>
+<body style="overflow-x:hidden;">
+<!-- Header -->
+ <header data-am-widget="header" class="am-header am-header-default"> 
+           <div class="am-header-left am-header-nav">
+          <a href="/home/User/index" >
+          <img class="am-header-icon-custom" src="data:image/svg+xml;charset&#x3D;utf-8,&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 12 20&quot;&gt;&lt;path d&#x3D;&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill&#x3D;&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+          </a>
+      </div>    
+      <h1 class="am-header-title">
+         意见反馈
+      </h1>    
+  </header>
+  {volist name="list" id="vo"}
+	 <div class="am-panel am-panel-default">
+	  <div class="am-panel-hd">{$vo.title}</div>
+	  <div class="am-panel-bd">
+	   {$vo.content|htmlspecialchars_decode}
+	  </div>
+	</div>  
+ {/volist}  
+ 
+  <form class="am-form">
+  <fieldset>
+    <legend>欢您留言</legend>
+    <div class="am-form-group">
+      <label for="doc-ta-1">反馈内容</label>
+      <textarea class="" name="content" rows="8" id="content"></textarea>
+    </div>
+
+    <p><a class="am-btn am-btn-primary am-btn-block" onclick="liuyan()">提交</a></p>
+  </fieldset>
+</form>
+ {include file="../application/home/view/footer/footer.html"} 
+ <script>
+ function liuyan(){
+	 var content=$('#content').val();
+	 $.ajax({
+			url : '/home/User/liuyan',
+			type : "post",
+			data :{
+				"content":content							
+			},
+			dataType : "json",			
+			success : function(data) {
+				if (data.state == 1) {			   
+					layer.msg(data.msg, {icon: 6}); 			    		     
+					location.href='/home/User/index';							
+				} else {
+					layer.msg(data.msg, {icon: 5});
+				}
+			},
+			error : function() {		
+				layer.msg('服务异常');			
+			}
+		});		   	
+ }
+ </script>
+
+</body>
+</html>

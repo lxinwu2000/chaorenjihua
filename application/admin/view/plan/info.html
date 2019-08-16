@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="{:config('public.tp5jump')}/layui/css/layui.css" />
+<link rel="stylesheet" href="{:config('public.tp5jump')}/common.css" />
+
+<div class="page-content">
+    <div class="col-sm-6 pull-right">
+       <span class="btn btn-sm btn-primary pull-right" onclick="javascript:window.history.back();">
+            返回上一页
+            <i class="icon-reply icon-only"></i>
+        </span>
+    </div>
+    <div class="page-header">
+         <h1>
+            {:model('menu')->getParentNname()}              
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                {:input('id')?'编辑':'新增'}
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+    
+   <form class="layui-form layui-form-labelsave" enctype="multipart/form-data" method="post" action="{:input('id')?'edit':'add'}">           
+   
+    <input type="hidden" name="id" value="{$editone.id}"/> 
+    
+     <div class="layui-form-item">
+    <label class="layui-form-label">选择彩票</label>
+    <div class="layui-input-block">
+      <select name="bid" lay-verify="required">
+        <option value=""></option>
+        {volist name="list" id="vo"}
+        <option value="{$vo.id}" {eq name="$vo.id" value="$editone.bid"}selected{/eq}>{$vo.bcname}</option>
+        {/volist}
+      </select>
+    </div>
+  </div>
+    
+   <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">计划名称</label>
+		    <div class="layui-input-block" >
+		      <input type="text" name="planname"  value="{$editone.planname}"  placeholder="计划名称" autocomplete="off" class="layui-input">
+		    </div>    
+		    
+		  </div>
+    </div>	
+                        
+   <div class="layui-col-xs10">
+		   <div class="layui-form-item">
+    <label class="layui-form-label">显示状态</label>
+    <div class="layui-input-block">
+      <input type="radio" name="status" value="1" title="显示" {if condition="$editone.status eq '1'"} checked="checked" {/if} checked>
+      <input type="radio" name="status" value="0" title="隐藏" {if condition="$editone.status eq '0'"} checked="checked" {/if}>
+    </div>
+  </div>
+    </div>	
+    
+   
+        
+     
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="classes">{:input('id')?'编辑':'添加'}</button>     
+    </div>
+  </div>
+</form>   
+   
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+ <script src="{:config('public.tp5jump')}/layui/layui.js"></script>
+ <script src="{:config('public.static')}/ace1.4/assets/js/jquery-2.1.4.min.js"></script> 
+  <script src="{:config('public.tp5jump')}/common.js"></script> 
+   <script>
+//Demo
+layui.use('form', function(){
+ var form = layui.form;
+});
+
+</script>

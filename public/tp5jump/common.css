@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+.layui-form-labelsave .layui-form-label{
+	width:110px!important;
+	font-size:11px;
+}
+img{
+	display:block !important;
+	max-width:100% !important;
+}
+.simg{
+	display:block !important;
+	max-width:100% !important;
+}
+#search{
+	height:40px!important;
+}
+.layui-elips{
+	width:100px!important;
+}
+.zzqy input{
+	border:none;
+}
+.teachersimg{
+	display:none;
+}
+.wsj-right{
+	margin-left:30px;
+}
+#educationlevel{
+	background:white!important;
+}

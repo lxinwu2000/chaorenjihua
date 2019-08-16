@@ -1,0 +1,34 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html class="no-js">
+<head>
+ {include file="../application/home/view/header/header.html"} 
+</head>
+<style>
+
+</style>
+<body>
+<!-- Header -->
+ <header data-am-widget="header"
+          class="am-header am-header-default">   
+          <div class="am-header-left am-header-nav">
+          <a href="/home/Index/index" class="">
+          <img class="am-header-icon-custom" src="data:image/svg+xml;charset&#x3D;utf-8,&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 12 20&quot;&gt;&lt;path d&#x3D;&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill&#x3D;&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+          </a>
+      </div> 
+      <h1 class="am-header-title">
+          公告详情
+      </h1>    
+  </header>
+ 
+ <div class="am-panel am-panel-default">
+  <div class="am-panel-hd">{$details.title}</div>
+  <div class="am-panel-bd">
+    {$details.content|htmlspecialchars_decode}
+  </div>
+</div>
+
+
+ {include file="../application/home/view/footer/footer.html"} 
+</body>
+</html>

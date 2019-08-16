@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="{:config('public.tp5jump')}/layui/css/layui.css" />
+<link rel="stylesheet" href="{:config('public.tp5jump')}/common.css" />
+
+<div class="page-content">
+    <div class="col-sm-6 pull-right">
+       <span class="btn btn-sm btn-primary pull-right" onclick="javascript:window.history.back();">
+            返回上一页
+            <i class="icon-reply icon-only"></i>
+        </span>
+    </div>
+    <div class="page-header">
+         <h1>
+            {:model('menu')->getParentNname()}              
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                {:input('id')?'编辑':'新增'}
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+    
+   <form class="layui-form layui-form-labelsave" enctype="multipart/form-data" method="post" action="{:input('id')?'edit':'add'}">           
+    <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">图片:</label>
+		    <div class="layui-input-block">
+		      <input type="file" name="imagepath" value="{$editone.imagepath}" {:input('id')?' ':'required'}>
+		    </div>
+		  </div>
+    </div>	
+    <input type="hidden" name="id" value="{$editone.id}"/>
+   {if condition="$editone.id neq ''"}
+    <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">缩略图:</label>
+		    <div class="layui-input-block">
+		     <img class="simg" src="{$editone.imagepath}" width="60"/>
+		    </div>
+		  </div>
+    </div>	
+{/if}
+    
+    
+    <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">图片链接:</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="url" value="{$editone.url}"  placeholder="图片链接" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+    </div>	
+        
+     
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="classes">{:input('id')?'编辑':'添加'}</button>     
+    </div>
+  </div>
+</form>   
+   
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+ <script src="{:config('public.tp5jump')}/layui/layui.js"></script>
+ <script src="{:config('public.static')}/ace1.4/assets/js/jquery-2.1.4.min.js"></script> 
+  <script src="{:config('public.tp5jump')}/common.js"></script> 

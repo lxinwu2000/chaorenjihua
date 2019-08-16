@@ -1,0 +1,74 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html class="no-js">
+<head>
+ {include file="../application/home/view/header/header.html"} 
+</head>
+<style>
+.wsjli li{
+	height:80px;
+	line-height:80px;
+	text-align:center;
+	border:1px solid#dedede;
+	font-size:16px;
+}
+.active{
+	background:#0e90d2;
+	color:white;
+}
+.wsjp p{
+	color:red;
+}
+</style>
+<body style="overflow-x:hidden;">
+<!-- Header -->
+ <header data-am-widget="header" class="am-header am-header-default"> 
+           <div class="am-header-left am-header-nav">
+          <a href="/home/User/index" >
+          <img class="am-header-icon-custom" src="data:image/svg+xml;charset&#x3D;utf-8,&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 12 20&quot;&gt;&lt;path d&#x3D;&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill&#x3D;&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+          </a>
+      </div>    
+      <h1 class="am-header-title">
+          充值续费
+      </h1>    
+  </header>
+ <!-- 轮播 -->
+<div class="am-g">	
+	<div class="am-panel am-panel-default">
+    <div class="am-panel-bd" style="font-size:15px;">
+    <input type="hidden" id="uid" value="{$userinfo.id}"/>
+     账号:{$userinfo.account}
+    </div>   	
+    </div>  
+    </div>
+	 <ul class="am-avg-sm-3 am-avg-md-3 am-avg-lg-4 am-thumbnails wsjli">
+	 {volist name="bonuslist" id="vo"}
+		  <li id="{$vo.id}">{$vo.bonus}元/{$vo.validity}天</li>
+	{/volist}	  
+       </ul>
+  
+	 <input type="hidden" id="paybonus" value=""/>
+	 <button style="margin:10px 0;" onclick="pay()" class="am-btn am-btn-lg am-btn-block am-btn-warning">充值</button>	 
+	</div>
+
+ {include file="../application/home/view/footer/footer.html"} 
+ <script>
+ $(function(){
+		$('.wsjli li').click(function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			var selectid=$(this).attr('id');
+			$('#paybonus').val(selectid);		
+		});
+	});
+ function pay(){	
+		var id=$('#paybonus').val();
+		var uid=$('#uid').val();
+		if(id==''){
+			layer.msg('请选择版本',{icon:5,time:1000});
+			return false;
+		}
+		window.location.href="/home/pay/pay?uid="+uid+"&aid="+id;
+	}
+ </script>
+</body>
+</html>

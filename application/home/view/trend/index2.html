@@ -1,0 +1,330 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html class="no-js">
+<head>
+  {include file="../application/home/view/header/header.html"} 
+</head>
+<body>
+<style>
+.am-form-group {
+	margin-bottom: 0.2rem;
+}
+
+.am-tabs-bd .am-tab-panel {
+	padding: 0;
+}
+table tr td{
+	font-size:12px;
+}
+table tr th{
+	font-size:13px;
+	text-align:center;
+}
+.navScroll {
+	position: relative;
+}
+
+#overflow {
+	width: 100%;
+	height: 30px;
+	overflow-x: scroll;
+}
+
+#overflow .container {
+	height: 30px;
+}
+
+#overflow .container div {
+	float: left;
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+
+#overflow::-webkit-scrollbar {
+	display: none;
+	-webkit-overflow-scrolling: touch;
+}
+
+.navScroll .drop_down {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 50px;
+	height: 30px;
+}
+
+.navScroll .drop_down img {
+	width: 100%;
+	height: 100%;
+}
+
+.tabUl.clearFix {
+	display: none;
+	width: 100%;
+	list-style: none;
+	z-index: 10;
+	background: rgba(0, 0, 0, .1);
+}
+
+.tabUl li {
+	float: left;
+	width: 6.25rem;
+	height: 2.65625rem;
+	line-height: 2.65625rem;;
+	text-align: center;
+}
+
+.clearFix {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+div, ul {
+	color: #444;
+}
+
+#overflow .container div.lastWidth {
+	width: 50px;
+}
+
+.red {
+	color: #FF9933;
+}
+</style>
+<!-- Header -->
+<header data-am-widget="header"
+          class="am-header am-header-default">    
+           <div class="am-header-left am-header-nav">
+          <a href="/home/Trend/index" >
+          <img class="am-header-icon-custom" src="data:image/svg+xml;charset&#x3D;utf-8,&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 12 20&quot;&gt;&lt;path d&#x3D;&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill&#x3D;&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+          </a>
+      </div>    
+      <h1 class="am-header-title" style="color:#444;">
+	  <select id="selectid" style="margin-top:-8px;font-size:14px;" onchange="bctype()">
+	  {volist name="list" id="vo"}
+	  <option value="{$vo.id}" {if condition="$vo.id eq $findid"}selected{/if}>{$vo.bcname}</option>
+	  {/volist}
+	</select>
+      </h1>
+      <div class="am-header-right am-header-nav">
+          <a href="#right-link" class="" style="font-size:13px;">
+                 最近20期 <span class="am-icon-angle-double-down"></span>
+          </a>
+      </div>
+  </header>
+
+<div class="am-g">
+<!-- 滑块 -->
+    <div class="navScroll">
+      <div id="overflow"> 
+        <div class="container"> 
+             <div class="tabItem red" onclick="trend('0')">
+             第十位
+          </div> 
+               <div class="tabItem" onclick="trend('1')">
+             第九位
+          </div> 
+               <div class="tabItem" onclick="trend('2')">
+             第八位
+          </div> 
+               <div class="tabItem" onclick="trend('3')">
+             第七位
+          </div> 
+             <div class="tabItem" onclick="trend('4')">
+             第六位
+          </div> 
+          <div class="tabItem" onclick="trend('5')">
+             第五位
+          </div> 
+          <div class="tabItem" onclick="trend('6')">
+             第四位
+          </div> 
+          <div class="tabItem" onclick="trend('7')">
+            第三位 
+          </div> 
+          <div class="tabItem" onclick="trend('8')">
+            第二位
+          </div> 
+          <div class="tabItem" onclick="trend('9')">
+            第一位
+          </div>                                      
+        </div> 
+      </div>     
+    </div>
+ <!-- table  -->  
+  <table class="am-table am-table-bordered am-table-striped am-table-compact am-text-center">
+  <thead>
+  <tr >
+    <th>期号</th>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+    <th>6</th>
+    <th>7</th>
+    <th>8</th>
+    <th>9</th>
+    <th>10</th>
+  </tr>
+  </thead>
+  <tbody id="tbody">
+  {$arr} 
+  </tbody>
+   <tr>
+    <td>总出现次数</td>
+    <td id="wsj1"></td>
+    <td id="wsj2">2</td>
+    <td id="wsj3">2</td>
+    <td id="wsj4">2</td>
+    <td id="wsj5">2</td>
+    <td id="wsj6">2</td>
+    <td id="wsj7">2</td>
+    <td id="wsj8">2</td>
+    <td id="wsj9">2</td>
+    <td id="wsj10">2</td>
+  </tr>
+   <tr>
+    <td>最大遗漏次数</td>
+    <td id="wsjyl1">1</td>
+    <td id="wsjyl2">2</td>
+    <td id="wsjyl3">2</td>
+    <td id="wsjyl4">2</td>
+    <td id="wsjyl5">2</td>
+    <td id="wsjyl6">2</td>
+    <td id="wsjyl7">2</td>
+    <td id="wsjyl8">2</td>
+    <td id="wsjyl9">2</td>
+    <td id="wsjyl10">2</td>
+  </tr>
+   <tr>
+    <td>最大连出次数</td>
+    <td id="lianxu1">1</td>
+    <td id="lianxu2">2</td>
+    <td id="lianxu3">2</td>
+    <td id="lianxu4">2</td>
+    <td id="lianxu5">2</td>
+    <td id="lianxu6">2</td>
+    <td id="lianxu7">2</td>
+    <td id="lianxu8">2</td>
+    <td id="lianxu9">2</td>
+    <td id="lianxu10">2</td>
+  </tr>
+</table>  
+    
+   
+</div>
+
+{include file="../application/home/view/footer/footer.html"} 
+<script src="{:config('public.assets')}/js/iscroll.js"></script>
+<script>
+//选择彩票类型
+function bctype(){
+	var selectid=$('#selectid').find("option:selected").val();
+	if(selectid==4){
+		window.location.href='/home/Trend/index';
+	}else if(selectid==9){
+		window.location.href='/home/Trend/bctype?id='+selectid;
+	}else if(selectid==5){
+		window.location.href='/home/Trend/txffctype?id='+selectid;
+	}
+	
+	
+}
+
+
+
+function trend(type){
+	var selectid=$('#selectid').find("option:selected").val();
+	$.ajax({
+		url : '/home/Trend/trend',
+		type : "post",
+		data : {"type":type,"id":selectid},
+		dataType : "json",	
+		beforeSend : function() {
+			layer.load(1);
+		},
+		success : function(data) {
+			if (data.state == 1) {
+				setTimeout(function(){
+					layer.closeAll();
+					$('#tbody').html(data.data);
+					counts();
+				},3000);								
+			} else {
+				layer.msg(data.msg,{icon:5});					
+			}
+		},
+		error : function() {
+			layer.msg("服务异常");
+		}
+	});		
+}
+//求数组的最大值
+function maxvalue(arr){
+	var max = arr[0];
+	for(var i = 1; i < arr.length; i++) {
+	   var cur = arr[i];
+	   cur > max ? max = cur : null
+	}
+	
+	return max;
+}
+//数组的缺失的个数
+function wsjqs($arr){
+	var num=0;
+	for(i=0;i<$arr.length;i++){
+		if(!$arr[i]&&!$arr[i+1]){
+			num+=1;
+		}
+	}
+	return num;
+}
+//统计遗漏连续函数
+function count(item){
+	var len=$("tr").length-4;
+	var count0=0;
+	var yilou=0;
+	var num=0;
+	var arr=[];
+	for(i=0;i<len;i++){ 
+		var wsjs=$('#tbody tr:eq('+i+')').find('td').eq(item).attr('class');
+		if(wsjs=='wsj'){
+			count0+=1;
+			yilou=0;
+		}else{			
+			yilou+=1;
+			arr[i]=yilou;			
+		}	   
+ 	} 
+	var lianxu=wsjqs(arr);
+	var lianxuid='#'+'lianxu'+item;
+	var wsjyl=maxvalue(arr);
+	var wsjylid='#'+'wsjyl'+item;
+	var selectid='#'+'wsj'+item;	
+	$(selectid).text(count0);	
+	$(wsjylid).text(wsjyl);	
+	$(lianxuid).text(lianxu);	
+}
+function counts(){
+	count(1);
+	count(2);
+	count(3);
+	count(4);
+	count(5);
+	count(6);
+	count(7);
+	count(8);
+	count(9);
+	count(10);
+}
+counts();
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,309 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html class="no-js">
+<head>
+ {include file="../application/home/view/header/header.html"} 
+</head>
+<style>
+.am-icon-bullhorn{
+	color:red;
+}
+.gonggao{
+	color:#444;
+}
+.am-badge {  
+    padding: .1em .4em !important;     
+}
+.am-list-news-default .am-list .am-list-thumb img {
+    width: 50px;
+    display: block;
+    height:50px;
+    border-radius:25px;
+    margin-top:10px;
+}
+.am-list-item-texts{
+	font-size: 1.3rem;
+}
+
+
+</style>
+<body>
+<!-- Header -->
+ <header data-am-widget="header"
+          class="am-header am-header-default">    
+      <h1 class="am-header-title">
+          首页
+      </h1>    
+  </header>
+ <!-- 轮播 -->
+  <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
+  <ul class="am-slides">
+  {volist name="sidelist" id="vo"}
+    <li>
+      <img src="{$vo.imagepath}">
+    </li>
+  {/volist}       
+  </ul>
+</div>
+ <!--公告 -->
+ <div class="am-text-css" style="margin-top:8px;">
+<marquee scrollamount="2">
+<i class="am-icon am-icon-bullhorn"></i> 
+ {volist name="gonggaolist" id="vo"}
+<a class="gonggao" href="/home/gonggao/details/?id={$vo.id}">{$vo.title}</a>
+  {/volist}
+</marquee>
+</div>
+
+
+<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+  <!--列表标题-->
+  <div class="am-list-news-hd am-cf">
+    <!--带更多链接-->
+    <a href="###">
+      <h2>彩票种类</h2>
+      <span class="am-list-news-more am-fr">更多 &raquo;</span>
+    </a>
+  </div>
+  <div class="am-list-news-bd">
+    <ul class="am-list">
+      {volist name="cplist" id="vo"}
+      <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" onclick="alert({$vo.id})">
+        <div class="am-u-sm-2 am-list-thumb">
+          <a href="">
+            <img src="{$vo.bcimg}"/>
+          </a>
+        </div>
+        <div class="am-u-sm-10 am-list-main">
+          <h3 class="am-list-item-hd">
+            <a href="">
+            	第<span id="wsj{$vo.id}">{$vo.arrpoint.expect}</span>期<span class="am-list-item-texts am-fr">海量玩法畅享无限</span>
+            </a>
+          </h3>
+          <div class="am-list-item-texts am-cf">
+          	<span class="am-fl">种类:{$vo.bcname}</span>
+          	<span class="am-fr">开奖倒计时:
+          	<span id="timer{$vo.id}">00:00:00</span>
+          	<span id="wt{$vo.id}">      	
+          	<script type="text/javascript">setInterval("CountDown({$vo.opendjstime},{$vo.id})", 1000);</script>          	
+          	</span>
+          	</span>
+          </div>          
+           <div class="opencode" id="opencode{$vo.id}">
+          {volist name="$vo.arrpoint.opencode" id="vv"}
+		  <span class="am-badge am-badge-danger am-round">{$vv}</span>
+		  {/volist}
+           </div>         
+        </div>           
+      </li> 
+      {/volist}    
+      <!-- 腾讯分分彩 -->
+      <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" onclick="alert({$txffcdata.id})">
+        <div class="am-u-sm-2 am-list-thumb">
+          <a href="">
+            <img src="{$txffcdata.bcimg}"/>
+          </a>
+        </div>
+        <div class="am-u-sm-10 am-list-main">
+          <h3 class="am-list-item-hd">
+            <a href="">
+            	第<span id="wsj{$txffcdata.id}">{$txffcdata.arrpoint.expect}</span>期<span class="am-list-item-texts am-fr">海量玩法畅享无限</span>
+            </a>
+          </h3>
+          <div class="am-list-item-texts am-cf">
+          	<span class="am-fl">种类:{$txffcdata.bcname}</span>
+          	<span class="am-fr">开奖倒计时:
+          	<span id="timer{$txffcdata.id}">00:00:00</span>
+          	<span id="wt{$txffcdata.id}">      	
+          	<script type="text/javascript">setInterval("CountDown2({$txffcdata.opendjstime},{$txffcdata.id})", 1000);</script>          	
+          	</span>
+          	</span>
+          </div>          
+           <div class="opencode" id="opencode{$txffcdata.id}">
+          {volist name="$txffcdata.arrpoint.opencode" id="vv"}
+		  <span class="am-badge am-badge-danger am-round">{$vv}</span>
+		  {/volist}
+           </div>         
+        </div>           
+      </li> 
+    <!--   幸运飞艇 -->
+     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" onclick="alert({$xyftinfo.id})">
+        <div class="am-u-sm-2 am-list-thumb">
+          <a href="">
+            <img src="{$xyftinfo.bcimg}"/>
+          </a>
+        </div>
+        <div class="am-u-sm-10 am-list-main">
+          <h3 class="am-list-item-hd">
+            <a href="">
+            	第<span id="wsj{$xyftinfo.id}">{$xyftinfo.arrpoint.expect}</span>期<span class="am-list-item-texts am-fr">海量玩法畅享无限</span>
+            </a>
+          </h3>
+          <div class="am-list-item-texts am-cf">
+          	<span class="am-fl">种类:{$xyftinfo.bcname}</span>
+          	<span class="am-fr">开奖倒计时:
+          	<span id="timer{$xyftinfo.id}">00:00:00</span>
+          	<span id="wt{$xyftinfo.id}">      	
+          	<script type="text/javascript">setInterval("CountDown3({$xyftinfo.opendjstime},{$xyftinfo.id})", 1000);</script>          	
+          	</span>
+          	</span>
+          </div>          
+           <div class="opencode" id="opencode{$xyftinfo.id}">
+          {volist name="$xyftinfo.arrpoint.opencode" id="vv"}
+		  <span class="am-badge am-badge-danger am-round">{$vv}</span>
+		  {/volist}
+           </div>         
+        </div>           
+      </li> 
+    
+           
+    </ul>
+  </div>
+</div>
+ {include file="../application/home/view/footer/footer.html"} 
+ <script>
+//幸运飞艇
+ function CountDown3(maxtime,selectid) {
+	 var id=selectid;
+	 var selectid='#'+'timer'+selectid;	
+	 var date = new Date();  
+	 var now =date.getTime()/1000|0; 
+	 var maxtime=maxtime+300;	
+	 var truetime=maxtime-now;	
+    if (truetime >0) {
+    	hours = Math.floor(truetime/60/60);
+        minutes = Math.floor(truetime / 60);
+        seconds = Math.floor(truetime % 60);
+        msg =hours+'时'+minutes + "分" + seconds + "秒";
+        $(selectid).html(msg);    
+    } else if(truetime==0){
+    	 $.ajax({
+	 			url : "/home/Index/findxyft",
+	 			type : "post",
+	 			data:{"id":id},
+	 			dataType: "json",
+	 			success: function(data){
+	 				console.log(data.data);
+	 				if(data.state==1){
+	 					layer.msg(data.msg, {icon: 6,time:1000});
+	 					var wsjid='#'+'wsj'+id;	
+	 					var wtid='#'+'wt'+id;	
+	 					var opencode='#'+'opencode'+id
+	 					$(wsjid).text(data.data.expect);
+	 					var item=data.data.opencode;
+	 					var content='';
+	 					for	(i=0;i<item.length;i++){
+	 						content+='<span class="am-badge am-badge-danger am-round">'+item[i]+'</span>&nbsp;';
+	 					}
+	 					$(opencode).html(content);
+	 					setInterval('CountDown3('+data.data.opentimestamp+','+id+')', 1000);	 					
+	 				}else{
+	 				layer.msg(data.msg, {icon: 5});
+	 				}
+	 			},
+	 		});	      
+    }
+    else{
+        clearInterval(selectid);
+        
+    }
+}
+ 
+
+ //腾讯分分彩
+ function CountDown2(maxtime,selectid) {
+	 var id=selectid;
+	 var selectid='#'+'timer'+selectid;	
+	 var date = new Date();  
+	 var now =date.getTime()/1000|0; 
+	 var maxtime=maxtime+75;	
+	 var truetime=maxtime-now;	
+    if (truetime >0) {
+    	hours = Math.floor(truetime/60/60);
+        minutes = Math.floor(truetime / 60);
+        seconds = Math.floor(truetime % 60);
+        msg =hours+'时'+minutes + "分" + seconds + "秒";
+        $(selectid).html(msg);    
+    } else if(truetime==0){
+    	 $.ajax({
+	 			url : "/home/Index/findtxffc",
+	 			type : "post",
+	 			data:{"id":id},
+	 			dataType: "json",
+	 			success: function(data){
+	 				console.log(data.data);
+	 				if(data.state==1){
+	 					layer.msg(data.msg, {icon: 6,time:1000});
+	 					var wsjid='#'+'wsj'+id;	
+	 					var wtid='#'+'wt'+id;	
+	 					var opencode='#'+'opencode'+id
+	 					$(wsjid).text(data.data.expect);
+	 					var item=data.data.opencode;
+	 					var content='';
+	 					for	(i=0;i<item.length;i++){
+	 						content+='<span class="am-badge am-badge-danger am-round">'+item[i]+'</span>&nbsp;';
+	 					}
+	 					$(opencode).html(content);
+	 					setInterval('CountDown2('+data.data.opentime+','+id+')', 1000);	 					
+	 				}else{
+	 				layer.msg(data.msg, {icon: 5});
+	 				}
+	 			},
+	 		});	      
+    }
+    else{
+        clearInterval(selectid);
+        
+    }
+}
+ 
+ 
+ //倒计时
+  function CountDown(maxtime,selectid) {
+	 var id=selectid;
+	 var selectid='#'+'timer'+selectid;	
+	 var date = new Date();  
+	 var now =date.getTime()/1000|0; 
+	 var maxtime=maxtime+20*60;	
+	 var truetime=maxtime-now;	
+    if (truetime >0) {
+    	hours = Math.floor(truetime/60/60);
+        minutes = Math.floor(truetime / 60);
+        seconds = Math.floor(truetime % 60);
+        msg =hours+'时'+minutes + "分" + seconds + "秒";
+        $(selectid).html(msg);    
+    } else if(truetime==0){
+    	 $.ajax({
+	 			url : "/home/Index/findbc",
+	 			type : "post",
+	 			data:{"id":id},
+	 			dataType: "json",
+	 			success: function(data){
+	 				console.log(data.data);
+	 				if(data.state==1){
+	 					layer.msg(data.msg, {icon: 6,time:1000});
+	 					var wsjid='#'+'wsj'+id;	
+	 					var wtid='#'+'wt'+id;	
+	 					var opencode='#'+'opencode'+id
+	 					$(wsjid).text(data.data.expect);
+	 					var item=data.data.opencode;
+	 					var content='';
+	 					for	(i=0;i<item.length;i++){
+	 						content+='<span class="am-badge am-badge-danger am-round">'+item[i]+'</span>';
+	 					}
+	 					$(opencode).html(content);
+	 					setInterval('CountDown('+data.data.opentimestamp+','+id+')', 1000);	 					
+	 				}else{
+	 				layer.msg(data.msg, {icon: 5});
+	 				}
+	 			},
+	 		});	      
+    }
+    else{
+        clearInterval(selectid);
+        
+    }
+}
+ </script>
+</body>
+</html>

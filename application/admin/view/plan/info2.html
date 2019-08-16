@@ -1,0 +1,491 @@
+<link rel="stylesheet" href="{:config('public.tp5jump')}/layui/css/layui.css" />
+<link rel="stylesheet" href="{:config('public.tp5jump')}/common.css" />
+<script>
+	function opt1change(obj){		
+		var opt1=obj.value;
+		var opt2_obj=document.getElementById("option02");
+		var opt3_obj=document.getElementById("option03");
+		for(var i=opt2_obj.options.length-1;i>=0;i--){
+			opt2_obj.remove(i);
+		}
+		for(var i=opt3_obj.options.length-1;i>=0;i--){
+			opt3_obj.remove(i);
+		}
+		if(opt1=="bssd"){
+			var option1=document.createElement("option");
+			option1.text="个";
+			option1.value="unit";
+			opt2_obj.add(option1,null);
+			var option2=document.createElement("option");
+			option2.text="十";
+			option2.value="ten";
+			opt2_obj.add(option2,null);
+			var option3=document.createElement("option");
+			option3.text="百";
+			option3.value="hundred";
+			opt2_obj.add(option3,null);
+			var option4=document.createElement("option");
+			option4.text="千";
+			option4.value="thousand";
+			opt2_obj.add(option4,null);
+			var option5=document.createElement("option");
+			option5.text="万";
+			option5.value="wan";
+			opt2_obj.add(option5,null);
+			
+			var option1=document.createElement("option");
+			option1.text="大小";
+			option1.value="bigsmall";
+			opt3_obj.add(option1,null);
+			var option3=document.createElement("option");
+			option3.text="单双";
+			option3.value="singledouble";
+			opt3_obj.add(option3,null);
+			var option5=document.createElement("option");
+			option5.text="定位";
+			option5.value="position";
+			opt3_obj.add(option5,null);	
+		}else if(opt1=="twostar"){
+			var option1=document.createElement("option");
+			option1.text="前二";
+			option1.value="beforetwo";
+			opt2_obj.add(option1,null);
+			var option2=document.createElement("option");
+			option2.text="后二";
+			option2.value="aftertwo";
+			opt2_obj.add(option2,null);
+			
+			var option1=document.createElement("option");
+			option1.text="单式";
+			option1.value="singlemode";
+			opt3_obj.add(option1,null);
+			var option2=document.createElement("option");
+			option2.text="复式";
+			option2.value="doublemode";
+			opt3_obj.add(option2,null);
+			var option3=document.createElement("option");
+			option3.text="胆码";
+			option3.value="danma";
+			opt3_obj.add(option3,null);			
+		}else if(opt1=="threestar"){
+			var option1=document.createElement("option");
+			option1.text="前三";
+			option1.value="beforethree";
+			opt2_obj.add(option1,null);
+			var option2=document.createElement("option");
+			option2.text="中三";
+			option2.value="middlethree";
+			opt2_obj.add(option2,null);
+			var option3=document.createElement("option");
+			option3.text="后三";
+			option3.value="afterthree";
+			opt2_obj.add(option3,null);
+			
+			var option1=document.createElement("option");
+			option1.text="单式";
+			option1.value="singlemode";
+			opt3_obj.add(option1,null);
+			var option2=document.createElement("option");
+			option2.text="复式";
+			option2.value="doublemode";
+			opt3_obj.add(option2,null);
+			var option3=document.createElement("option");
+			option3.text="胆码";
+			option3.value="danma";
+			opt3_obj.add(option3,null);
+			var option4=document.createElement("option");
+			option4.text="组三";
+			option4.value="groupthree";
+			opt3_obj.add(option4,null);
+			var option5=document.createElement("option");
+			option5.text="组六";
+			option5.value="groupsix";
+			opt3_obj.add(option5,null);				
+		}else if(opt1=="fourstar"){
+			var option1=document.createElement("option");
+			option1.text="前四";
+			option1.value="beforefour";
+			opt2_obj.add(option1,null);
+			var option2=document.createElement("option");
+			option2.text="后四";
+			option2.value="afterfour";
+			opt2_obj.add(option2,null);
+			
+			var option2=document.createElement("option");
+			option2.text="复式";
+			option2.value="doublemode";
+			opt3_obj.add(option2,null);
+			var option3=document.createElement("option");
+			option3.text="胆码";
+			option3.value="danma";
+			opt3_obj.add(option3,null);
+			var option4=document.createElement("option");
+		}else if(opt1=="fivestar"){
+			var option1=document.createElement("option");
+			option1.text="无";
+			option1.value="none";
+			opt2_obj.add(option1,null);
+			
+			var option2=document.createElement("option");
+			option2.text="复式";
+			option2.value="doublemode";
+			opt3_obj.add(option2,null);
+			var option3=document.createElement("option");
+			option3.text="胆码";
+			option3.value="danma";
+			opt3_obj.add(option3,null);
+			var option5=document.createElement("option");
+			option5.text="定位";
+			option5.value="position";
+			opt3_obj.add(option5,null);				
+		}
+	}
+	function opt3change(obj){
+		var opt3=obj.value;	
+		var option01=document.getElementById("option01").value;
+		var opt4_obj=document.getElementById("option04");
+		if(option01=="bssd" && opt3=="position"){
+			opt4_obj.style="display:block;";
+		}else{
+			opt4_obj.style="display:none;";
+		}
+	}
+	function checksubmit(){
+		var rulename=document.getElementsByName("rulename")[0].value;
+		var option01=document.getElementById("option01").value;
+		var option02=document.getElementById("option02").value;
+		var option03=document.getElementById("option03").value;
+		var option04=parseInt(document.getElementsByName("option04")[0].value);
+		var count=parseInt(document.getElementsByName("count")[0].value);
+		var codelength=parseInt(document.getElementsByName("codelength")[0].value);
+		var errormsg="";
+		if(rulename==""){
+			errormsg+="玩法名称不能为空\n";
+			document.getElementsByName("rulename")[0].focus();
+		}
+		if(option01==""){
+			errormsg+="子选项1不能为空\n";
+			document.getElementById("option01").focus();
+		}
+		if(option01=="bssd" && option03=="position"){
+			if(isNaN(option04)||option04<0){
+				errormsg+="定位号码不正确\n";
+				document.getElementsByName("option04")[0].focus();
+			}
+		}
+		if(isNaN(count)||count<=0){
+			errormsg+="期数不正确\n";
+			document.getElementsByName("count")[0].focus();
+		}
+		if(isNaN(codelength)||codelength<=0){
+			errormsg+="出号位数不正确\n";
+			document.getElementsByName("codelength")[0].focus();
+		}
+		if(errormsg!=""){
+			alert(errormsg);
+			return false;
+		}
+		return true;
+	}
+</script>
+<div class="page-content">
+    <div class="col-sm-6 pull-right">
+       <span class="btn btn-sm btn-primary pull-right" onclick="window.location.href='/admin/Plan/index'">
+            返回上一页
+            <i class="icon-reply icon-only"></i>
+        </span>
+    </div>
+    <div class="page-header">
+         <h1>
+            {:model('menu')->getParentNname()}              
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                设置规则
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+   <form enctype="multipart/form-data" method="post" action="setrule" onsubmit="return checksubmit();">           
+   
+    <input type="hidden" name="id" value="{$editone.id}"/> 
+    <input type="hidden" name="pid" value="{$info.id}"/>
+    
+     <blockquote class="layui-elem-quote">{$info.planname}</blockquote>
+    
+   <div>
+   		<div>
+		    <label>玩法名称</label>
+		    <div>
+		      <input lay-verify="required" type="text" name="rulename" placeholder="玩法名称" autocomplete="off"><span id="rulenamemsg"></span>
+		    </div>
+	    </div>
+    </div>
+   
+   <div>
+   		<div>
+		    <label>子选项1</label>
+		    <div>
+		      <select lay-verify="required" id="option01" name="option01" onchange="opt1change(this);">
+		      <option value="">--请选择--</option>     
+		        <option value="bssd">大小单双</option>
+		        <option value="twostar">二星</option>
+		        <option value="threestar">三星</option>
+		        <option value="fourstar">四星</option>
+		        <option value="fivestar">五星</option>
+		      </select><span id="opt1msg"></span>
+		    </div>
+		    
+	    </div>
+    </div>
+   <div>
+   		<div>
+		    <label>子选项2</label>
+		    <div>
+		      <select id="option02" name="option02">
+		      <!-- 
+		        <option value="unit">个</option>
+		        <option value="ten">十</option>
+		        <option value="hundred">百</option>
+		        <option value="thousand">千</option>
+		        <option value="wan">万</option>
+		        <option value="beforetwo">前二</option>
+		        <option value="aftertwo">后二</option>
+		        <option value="beforethree">前三</option>
+		        <option value="middlethree">中三</option>
+		        <option value="afterthree">后三</option>
+		        <option value="beforefour">前四</option>
+		        <option value="afterfour">后四</option>
+		        <option value="none" selected>无</option>
+		         -->
+		      </select><span id="opt2msg"></span>
+		    </div>
+	    </div>
+    </div>
+   <div>
+   		<div>
+		    <label>子选项3</label>
+		    <div>
+		      <select id="option03" name="option03"  onchange="opt3change(this);">
+		      <!-- 
+		        <option value="position">定位</option>
+		        <option value="big">大</option>
+		        <option value="small">小</option>
+		        <option value="single">单</option>
+		        <option value="double">双</option>
+		        <option value="singlemode">单式</option>
+		        <option value="doublemode">复式</option>
+		        <option value="danma">胆码</option>
+		        <option value="groupthree">组三</option>
+		        <option value="groupsix">组六</option>
+		         -->
+		      </select><span id="opt3msg"></span>
+		    </div>
+	    </div>
+    </div>
+   <div>
+   		<div>
+		  <div style="display:none" id="option04">
+		    <label>定位号码</label>
+		    <div>
+		      <input type="number" name="option04" placeholder="定位号码" autocomplete="off"><span id="opt4msg"></span>
+		    </div>
+		  </div>
+		</div>
+    </div>    
+   <div>
+		  <div>
+		    <label>期数</label>
+		    <div>
+		      <input type="number" name="count" placeholder="期数" autocomplete="off"><span id="countmsg"></span>
+		    </div>
+		  </div>
+    </div>
+   <div>
+		  <div>
+		    <label>出号位数</label>
+		    <div >
+		      <input type="number" name="codelength"  value="5" placeholder="位数" autocomplete="off"><span id="codelengthmsg"></span>
+		    </div>
+		  </div>
+    </div>
+  <div>
+    <div>
+      <button class="layui-btn" lay-submit lay-filter="classes">提交</button>     
+    </div>
+  </div>
+</form>
+   <!--   
+   <form class="layui-form layui-form-labelsave" enctype="multipart/form-data" method="post" action="setrule">           
+   
+    <input type="hidden" name="id" value="{$editone.id}"/> 
+    <input type="hidden" name="pid" value="{$info.id}"/>
+    
+     <blockquote class="layui-elem-quote">{$info.planname}</blockquote>
+    
+   <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">玩法名称</label>
+		    <div class="layui-input-block" >
+		      <input type="text" name="rulename" placeholder="玩法名称" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+    </div>
+   
+   <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">子选项1</label>
+		    <div class="layui-input-block">
+		      <select id="option01" name="option01" lay-verify="required" lay-filter="opt1">     
+		        <option value="bssd">大小单双</option>
+		        <option value="twostar">二星</option>
+		        <option value="threestar">三星</option>
+		        <option value="fourstar">四星</option>
+		        <option value="fivestar">五星</option>
+		      </select>
+		    </div>
+		  </div>
+    </div>
+   <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">子选项2</label>
+		    <div class="layui-input-block">
+		      <select id="option02" name="option02" lay-verify="required" lay-filter="opt2">
+		        <option value="unit">个</option>
+		        <option value="ten">十</option>
+		        <option value="hundred">百</option>
+		        <option value="thousand">千</option>
+		        <option value="wan">万</option>
+		        <option value="beforetwo">前二</option>
+		        <option value="aftertwo">后二</option>
+		        <option value="beforethree">前三</option>
+		        <option value="middlethree">中三</option>
+		        <option value="afterthree">后三</option>
+		        <option value="beforefour">前四</option>
+		        <option value="afterfour">后四</option>
+		        <option value="none" selected>无</option>
+		      </select>
+		    </div>
+		  </div>
+    </div>
+   <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">子选项3</label>
+		    <div class="layui-input-block">
+		      <select id="option03" name="option03" lay-verify="required" lay-filter="opt3">
+		        <option value="position">定位</option>
+		        <option value="big">大</option>
+		        <option value="small">小</option>
+		        <option value="single">单</option>
+		        <option value="double">双</option>
+		        <option value="singlemode">单式</option>
+		        <option value="doublemode">复式</option>
+		        <option value="danma">胆码</option>
+		        <option value="groupthree">组三</option>
+		        <option value="groupsix">组六</option>
+		      </select>
+		    </div>
+		  </div>
+    </div>
+   <div class="layui-col-xs10">
+		  <div class="layui-form-item" style="display:none" id="option04">
+		    <label class="layui-form-label">子选项4</label>
+		    <div class="layui-input-block" >
+		      <input type="number" name="option04" placeholder="定位号码" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+    </div>    
+   <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">注数</label>
+		    <div class="layui-input-block" >
+		      <input type="number" name="count" placeholder="注数" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+    </div>
+   <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">出号位数</label>
+		    <div class="layui-input-block" >
+		      <input type="number" name="codelength"  value="5" placeholder="位数" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+    </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="classes">提交</button>     
+    </div>
+  </div>
+</form>
+ -->
+<table class="layui-table">
+  <thead>
+    <tr>
+      <th>玩法名称</th>
+      <th>子选项1</th>
+      <th>子选项2</th>
+      <th>子选项3</th>
+      <th>定位号码</th>
+      <th>期数</th>
+      <th>出号位数</th>
+      <th>操作</th>
+    </tr> 
+  </thead>
+  <tbody>
+    {volist name="list" id="vo"}
+    <tr>
+      <td><input type="text" id="editrulename{$vo.id}" value="{$vo.rulename}"/>
+      <a onclick="editrulename('{$vo.id}')" class="layui-btn  layui-btn-xs">修改</a></td>
+      <td>{$vo.option01}</td>
+      <td>{$vo.option02}</td>
+      <td>{$vo.option03}</td>
+      <td>{$vo.option04}</td>
+      <td>{$vo.count}</td>
+      <td>{$vo.codelength}</td>
+      <td><a class="layui-btn layui-btn-xs layui-btn-danger" onclick="del({$vo.id})">删除</a></td>
+    </tr>
+   {/volist}
+  </tbody>
+</table>
+
+   
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+ <script src="{:config('public.tp5jump')}/layui/layui.js"></script>
+ <script src="{:config('public.static')}/ace1.4/assets/js/jquery-2.1.4.min.js"></script> 
+  <script src="{:config('public.tp5jump')}/common.js"></script> 
+   <script>
+//Demo
+layui.use('form', function(){
+ var form = layui.form;
+ form.on('select(opt1)', function(data){   
+	  	var val=data.value;
+	  	var obj_opt2=document.getElementById("option02");
+	  	for(var i=obj_opt2.options.length-1;i>=0;i--){
+	  		obj_opt2.remove(i);
+	  	}
+	});
+});
+function del(id){
+	 layer.confirm('真的删除这些数据吗', function(index){   
+		 window.location.href="/admin/Plan/delrule?id="+id;
+	 });
+}
+function editrulename(id){	
+	var rulenameobj='#'+'editrulename'+id;
+	var rulename=$(rulenameobj).val();
+  	  $.ajax({
+			url : "/admin/plan/modifyrulename",
+			type : "post",
+			data:{"id":id,"rulename":rulename},
+			dataType: "json",
+			success: function(data){
+				if(data.state==1){
+					layer.msg(data.msg, {icon: 6,time:1000});
+	                location.href=location.href;
+				}else{
+				layer.msg(data.msg, {icon: 5});
+				}
+			},
+		});	         		    	    
+}
+</script>

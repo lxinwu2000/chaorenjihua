@@ -1,0 +1,26 @@
+{
+  "name": "hegzh/aliyun-core",
+  "description": "阿里大于PHP SDK的核心依赖包的composer封装",
+  "keywords": [
+    "aliyun",
+    "aliyun-core",
+    "sdk",
+    "sms"
+  ],
+  "require": {
+    "php": ">5.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "hegzh\\AliyunCore\\": "src/"
+    }
+  },
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Gilbert.Ho",
+      "email": "495047737@qq.com"
+    }
+  ]
+}

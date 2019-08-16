@@ -1,0 +1,48 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html class="no-js">
+<head>
+ {include file="../application/home/view/header/header.html"} 
+</head>
+<style>
+.wsjli li{
+	height:80px;
+	line-height:80px;
+	text-align:center;
+	border:1px solid#dedede;
+	font-size:16px;
+}
+.active{
+	background:#0e90d2;
+	color:white;
+}
+.wsjp p{
+	color:red;
+}
+</style>
+<body style="overflow-x:hidden;">
+<!-- Header -->
+ <header data-am-widget="header" class="am-header am-header-default"> 
+           <div class="am-header-left am-header-nav">
+          <a href="/home/User/index" >
+          <img class="am-header-icon-custom" src="data:image/svg+xml;charset&#x3D;utf-8,&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 12 20&quot;&gt;&lt;path d&#x3D;&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill&#x3D;&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+          </a>
+      </div>    
+      <h1 class="am-header-title">
+          公告信息
+      </h1>    
+  </header>
+  {volist name="list" id="vo"}
+	 <div class="am-panel am-panel-default">
+	  <div class="am-panel-hd">{$vo.title}</div>
+	  <div class="am-panel-bd">
+	   {$vo.content|htmlspecialchars_decode}
+	  </div>
+	</div>  
+ {/volist}  
+
+
+ {include file="../application/home/view/footer/footer.html"} 
+
+</body>
+</html>

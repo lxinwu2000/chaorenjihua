@@ -1,0 +1,136 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html class="no-js">
+<head>
+ {include file="../application/home/view/header/header.html"} 
+</head>
+<style>
+</style>
+<body style="overflow-x:hidden;">
+<!-- Header -->
+ <header data-am-widget="header"
+          class="am-header am-header-default">    
+      <h1 class="am-header-title">
+          个人中心
+      </h1>    
+  </header>
+ <!-- 轮播 -->
+<div class="am-g">
+
+ <div class="am-vertical-align userinfo">	
+  <div class="am-vertical-align-middle ">
+   <img src="{:config('public.assets')}/img/log.jpg"  class="am-img-thumbnail am-circle">
+  </div>
+  <div class="am-vertical-align-middle am-info" style="font-size:14px;">
+  	<span>{$userinfo.account}</span>&nbsp;
+  	<a class="am-badge am-badge-warning">
+  	{if condition="$userinfo.dlsstatus eq '0'"}
+  	普通会员
+  	{else/}
+  	代理商会员
+  	{/if}
+  	</a> 
+  	<a class="am-badge am-badge-danger am-fr" href="/home/User/userrecharge?uid={$userinfo.id}">前往续费</a>	
+  	<p class="dqtime">到期时间:{$userinfo.daoqitime}</p>
+  	<p class="qbb">群版本:1000人 后续继续更新!</p>	
+    
+  </div> 
+</div>
+  
+<div class="am-g" id="user">	
+	<ul class="am-list am-list-border">
+	     
+	     <li>
+		  	<a href="/home/User/sjgs?uid={$userinfo.id}">
+		  	<i class="am-icon-file-text-o am-icon-pluscolor"></i>
+		  充值记录
+		    <i class="am-icon-angle-right am-fr am-margin-right-sm"></i> 
+		    </a>
+	  </li>		
+	  
+	   <li>
+		  	<a href="/home/User/shenqingdaili">
+		  	<i class="am-icon-file-text-o am-icon-send"></i>
+		  申请代理
+		    <i class="am-icon-angle-right am-fr am-margin-right-sm"></i> 
+		    </a>
+	  </li>
+	  <li>
+		  	<a {if condition="$userinfo.dlsstatus eq '0'"}onclick="tips()"{else/}href="/home/Register/index" {/if}>
+		  	<i class="am-icon-users am-icon-userscolor"></i>
+		  注册会员
+		    <i class="am-icon-angle-right am-fr am-margin-right-sm"></i> 
+		    </a>
+	  </li>  	  
+	   <li>
+		  	<a {if condition="$userinfo.dlsstatus eq '0'"}onclick="tips()"{else/}href="/home/Register/index" {/if}>
+		  	<i class="am-icon-users am-icon-usercolor"></i>
+		  我的团队
+		    <i class="am-icon-angle-right am-fr am-margin-right-sm"></i> 
+		    </a>
+	  </li>  
+	   
+	    <li>
+		  	<a href="/home/User/editpaw">
+		  	<i class="am-icon-list-ul am-icon-list-ulcolor"></i>
+		  修改密码
+		    <i class="am-icon-angle-right am-fr am-margin-right-sm"></i> 
+		    </a>
+	    </li> 	  
+	    <li>
+		  	<a href="/home/User/gonggao">
+		  	<i class="am-icon-bullhorn am-icon-chaincolor"></i>
+		  系统公告
+		    <i class="am-icon-angle-right am-fr am-margin-right-sm"></i> 
+		    </a>
+	  </li>   
+	  
+	   <li>
+		  	<a href="/home/User/liuyan">
+		  	<i class="am-icon-edit am-icon-jpycolor"></i>
+		  意见反馈
+		    <i class="am-icon-angle-right am-fr am-margin-right-sm"></i> 
+		    </a>
+	  </li>  
+	   	 
+	   <li  onclick="logout()">
+		  	<a href="#">
+		  	<i class="am-icon-sign-out am-icon-bookmarkcolor"></i>
+		  退出登录      
+		    <i class="am-icon-angle-right am-fr am-margin-right-sm"></i> 
+		    </a>
+	  </li>	  	 	 	  	 
+	</ul>
+</div>
+</div>  
+ {include file="../application/home/view/footer/footer.html"} 
+ <script>
+ function tips(){
+	 layer.msg('您还不是代理商无法使用此功能！',{icon:5});
+ }
+ function logout(){	
+		layer.confirm('您确定要退出登录码', {
+			btn : [ '确定', '取消' ]
+		}, function() {
+			$.ajax({
+				url : '/home/Login/logout',
+				type : "post",
+				dataType : "json",		
+				success : function(data) {
+					if (data.state == 1) {
+						layer.msg(data.msg,{icon:6});	
+						location.href='/home/Login/index';
+					} else {
+						layer.msg(data.msg,{icon:5});					
+					}
+				},
+				error : function() {
+					layer.msg("服务异常");
+				}
+			});		
+		});
+		
+	}
+ </script>
+</body>
+</html>

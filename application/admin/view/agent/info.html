@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="{:config('public.tp5jump')}/layui/css/layui.css" />
+<link rel="stylesheet" href="{:config('public.tp5jump')}/common.css" />
+
+<div class="page-content">
+    <div class="col-sm-6 pull-right">
+       <span class="btn btn-sm btn-primary pull-right" onclick="javascript:window.history.back();">
+            返回上一页
+            <i class="icon-reply icon-only"></i>
+        </span>
+    </div>
+    <div class="page-header">
+         <h1>
+            {:model('menu')->getParentNname()}              
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                {:input('id')?'编辑':'新增'}
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+    
+   <form class="layui-form layui-form-labelsave" enctype="multipart/form-data" method="post" action="{:input('id')?'edit':'add'}">           
+    <input type="hidden" name="id" value={$editone.id}>
+    <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">充值金额</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="bonus" value="{$editone.bonus}"  placeholder="充值金额" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+    </div>	
+    
+    <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">有效期/天</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="validity" value="{$editone.validity}"  placeholder="有效期" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+    </div>	
+        
+     <div class="layui-col-xs10">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">添加的人数</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="addrenshu" value="{$editone.addrenshu}"  placeholder="添加的人数" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+    </div>	   
+        
+     
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="classes">{:input('id')?'编辑':'添加'}</button>     
+    </div>
+  </div>
+</form>   
+   
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+ <script src="{:config('public.tp5jump')}/layui/layui.js"></script>
+ <script src="{:config('public.static')}/ace1.4/assets/js/jquery-2.1.4.min.js"></script> 
+  <script src="{:config('public.tp5jump')}/common.js"></script> 

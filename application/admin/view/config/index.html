@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="{:config('public.tp5jump')}/layui/css/layui.css" />
+<link rel="stylesheet" href="{:config('public.tp5jump')}/common.css" />
+<style>
+.layui-form-label{
+	width:110px;
+}
+</style>
+<div class="page-content">
+    <div class="col-sm-6 pull-right">
+     <!--    <button class="btn btn-sm btn-primary pull-right" onclick="javascript:window.location.href = 'index'">
+            返回列表
+            <i class="icon-reply icon-only"></i>
+        </button> -->
+    </div>
+    <div class="page-header">
+        <h1>
+          {:model('menu')->getName()} 
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                {:input('id')?'编辑':'编辑'}
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <form class="layui-form" action="">
+  <div class="layui-form-item">
+    <label class="layui-form-label">系统名称</label>
+    <div class="layui-input-block">
+      <input type="text" name="xtname" value="{$editone.xtname}" required  lay-verify="required" placeholder="请输入系统名称" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  
+  <div class="layui-form-item">
+    <label class="layui-form-label">客服qq</label>
+    <div class="layui-input-block">
+      <input type="text" name="xtkefu" value="{$editone.xtkefu}" required  lay-verify="required" placeholder="请输入系统客服" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  
+  <div class="layui-form-item">
+    <label class="layui-form-label">系统电话</label>
+    <div class="layui-input-block">
+      <input type="text" name="xtphone" value="{$editone.xtphone}" required  lay-verify="required" placeholder="请输入系统电话" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+ 
+ <div class="layui-form-item">
+    <label class="layui-form-label">seo关键词</label>
+    <div class="layui-input-block">
+      <input type="text" name="xtseokey" value="{$editone.xtseokey}" required  lay-verify="required" placeholder="请输入seo关键词" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  
+  <div class="layui-form-item">
+    <label class="layui-form-label">没有充值会员默认浏览多久单位分钟</label>
+    <div class="layui-input-block">
+      <input type="text" name="looktime" value="{$editone.looktime}" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  
+  <div class="layui-form-item">
+    <label class="layui-form-label">计划保留的最大记录数</label>
+    <div class="layui-input-block">
+      <input type="text" name="reservecount" value="{$editone.reservecount}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  
+  <div class="layui-form-item">
+    <label class="layui-form-label">几连挂自动删除</label>
+    <div class="layui-input-block">
+      <input type="text" name="continuedfailcount" value="{$editone.continuedfailcount}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+  </div>  
+  
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">网站描述</label>
+    <div class="layui-input-block">
+      <textarea name="desc" placeholder="请输入内容" class="layui-textarea">{$editone.desc}</textarea>
+    </div>
+  </div>
+  
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>  
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+   <script src="{:config('public.tp5jump')}/layui/layui.js"></script>
+   <script src="{:config('public.static')}/ace1.4/assets/js/jquery-2.1.4.min.js"></script> 
+  <script src="{:config('public.tp5jump')}/common.js"></script> 
+  <script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    var data=JSON.stringify(data.field)
+     $.ajax({
+		url : "/admin/Config/edit",
+		type : "post",
+		data:{"data":data},
+		dataType: "json",
+		success: function(data){
+			if(data.state==1){
+				layer.msg(data.msg, {icon: 6,time:1000});
+				location.href=location.href;			  				
+			}else{
+			layer.msg(data.msg, {icon: 5});
+			}
+		},
+	});	      
+    
+    return false;
+  });
+});
+</script>

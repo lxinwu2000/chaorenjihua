@@ -1,0 +1,92 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html class="no-js">
+<head>
+ {include file="../application/home/view/header/header.html"} 
+</head>
+<body>
+<!-- Header -->
+ <header data-am-widget="header"
+          class="am-header am-header-default">
+      <div class="am-header-left am-header-nav">
+          <a href="/home/Login/index" class="">
+              <span class="am-header-nav-title">
+                登录
+              </span>            
+          </a>
+      </div>
+
+      <h1 class="am-header-title">
+          注册页面
+      </h1>
+
+      <div class="am-header-right am-header-nav">
+          <a href="/home/Register/index" class="">
+              <span class="am-header-nav-title">
+                注册
+              </span>            
+          </a>
+      </div>
+  </header>
+
+<div class="am-input-group">
+  <span class="am-input-group-label">账号</span>
+  <input type="text" class="am-form-field" name="account" id="account" placeholder="请输入账号">
+</div>
+
+<div class="am-input-group">
+  <span class="am-input-group-label">密码</span>
+  <input type="password" class="am-form-field" name="password" id="password" placeholder="请输入密码">
+</div>
+
+<div class="am-input-group">
+  <span class="am-input-group-label">确认密码</span>
+  <input type="password" class="am-form-field" name="password_confirm" id="password_confirm" placeholder="请输入确认密码">
+</div>
+
+
+
+<!-- <div class="am-input-group">
+  <span class="am-input-group-label" >验证码</span>
+   <input type="text" class="am-form-field" name="code" id="code" placeholder="验证码" >
+  <span class="am-input-group-label" style="padding:0;"><img src="{:captcha_src()}" onclick="this.src='{:captcha_src()}?x='+Math.random();" /></span>    
+</div> -->
+
+<a  class="am-btn am-btn-secondary am-radius am-btn-block" onclick="reg()">提交</a>
+<script src="{:config('public.assets')}/js/jquery-3.3.1.min.js"></script>
+<script src="{:config('public.assets')}/js/amazeui.min.js"></script>
+<script src="{:config('public.assets')}/layer/layer.js"></script>
+<script>
+function reg(){
+	var account=$('#account').val();
+	var password=$('#password').val();
+	var password_confirm=$('#password_confirm').val();		
+	
+    $.ajax({
+		url : '/home/Register/reg',
+		type : "post",
+		data :{
+			"account":account,		
+			"password":password,
+			"password_confirm":password_confirm			
+		},
+		dataType : "json",			
+		success : function(data) {
+			if (data.state == 1) {			   
+				layer.msg(data.msg, {icon: 6}); 			    		     
+				location.href='/home/Login/index';							
+			} else {
+				layer.msg(data.msg, {icon: 5});
+			}
+		},
+		error : function() {		
+			layer.msg('服务异常');			
+		}
+	});		   	
+}
+	
+	
+</script>
+
+</body>
+</html>

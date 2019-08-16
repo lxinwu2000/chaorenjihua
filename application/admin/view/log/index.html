@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="{:config('public.tp5jump')}/layui/css/layui.css" />
+<div class="page-content">
+    <div class="col-sm-6 pull-right">
+        <span class="btn btn-sm btn-primary pull-right" onclick="pldel()">
+            批量删除
+            <i class="icon-reply icon-only"></i>
+        </span>
+    </div>
+    <div class="page-header">
+        <h1>
+            {:model('menu')->getName()}
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+             默认显示最近30条记录
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <table id="simple-table" class="table table-condensed table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="center">
+                                    <label class="pos-rel">
+                                        <input type="checkbox" class="ace" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </th>
+                                <th class="detail-col">序号</th>
+                                <th>用户名</th>
+                                <th>操作地址</th>
+                                <th class="hidden-480">操作IP</th>
+                                <th>
+                                    <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                    操作时间
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {volist name="lists" id="vo"}
+                            <tr>
+                                <td class="center">
+                                    <label class="pos-rel">
+                                        <input type="checkbox" class="ace" value="{$vo.id}" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                <td>{$vo.id}</td>
+                                <td><a href="#">{$vo.username}</a></td>
+                                <td>{$vo.c}/{$vo.a}{$vo.querystring}</td>
+                                <td class="hidden-480"><a href="http://ip138.com/ips138.asp?ip={:long2ip($vo.ip)}" target="_blank">{:long2ip($vo.ip)}</a></td>
+                                <td>{:date('Y-m-d H:i:s',$vo.time)}</td>
+                                
+                            </tr>
+                            {/volist}    
+                        </tbody>
+                    </table>
+                   
+                </div><!-- /.span -->
+            </div><!-- /.row -->
+              
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+ <script src="{:config('public.tp5jump')}/layui/layui.js"></script>
+ <script src="{:config('public.static')}/ace1.4/assets/js/jquery-2.1.4.min.js"></script>
+ <script src="{:config('public.tp5jump')}/common.js"></script>  
+ <script src="{:config('public.tp5jump')}/logs.js"></script>    
+
